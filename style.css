@@ -36,3 +36,23 @@ main {
     border: 1px solid black;
     border-radius: 10px;
 }
+
+.input_section > h2 {
+    text-align: center;
+    color: rgb(238, 146, 139);
+}
+
+.input_section > form > .input {
+    margin: 8px 0;
+}
+
+.input_section > form > button {
+    background-color: rgb(238, 146, 139);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+}
