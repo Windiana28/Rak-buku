@@ -46,6 +46,30 @@ function createBook(bookObject){
       removeBookFromCompleted(bookObject.id);
   });
 
+  if(bookObject.isComplete){
+
+    const undoButton = document.createElement("button");
+    undoButton.classList.add("green");
+    undoButton.innerText = "Belum selesai dibaca";
+    undoButton.addEventListener("click", function(){
+        undoBookFromCompleted(bookObject.id);
+    });
+
+    container.append(undoButton,trashButton);
+} else {
+    
+    const checkButton = document.createElement("button");
+    checkButton.classList.add("green");
+    checkButton.innerText = "Selesai Dibaca";
+    checkButton.addEventListener("click", function(){
+        addBookToCompleted(bookObject.id);
+    });
+    container.append(checkButton, trashButton);
+}
+
+return container;
+}
+
 
 
 
