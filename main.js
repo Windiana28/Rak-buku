@@ -159,3 +159,19 @@ function loadDataFromStorage() {
   }
   document.dispatchEvent(new Event(RENDER_EVENT));
 }
+
+const searchButton = document.getElementById("searchSubmit");
+searchButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  const bookList = document.getElementById("searchBookTitle").value;
+  const filter = document.querySelectorAll(".book_item");
+  for (buku of filter) {
+    const judul = buku.innerText;
+
+    if (judul.includes(bookList)) {
+      buku.style.display = "block";
+    } else {
+      buku.style.display = "none";
+    }
+  }
+});
