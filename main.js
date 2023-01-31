@@ -97,3 +97,32 @@ function findBookIndex(bookId) {
   }
   return -1;
 }
+
+document.addEventListener(RENDER_EVENT, function (){
+  const incompleteBookshelfList = document.getElementById("incompleteBookshelfList");
+  incompleteBookshelfList.innerHTML = "";
+
+  const completeBookshelfList = document.getElementById("completeBookshelfList");
+  completeBookshelfList.innerHTML = "";
+
+  for(bookItem of books){
+      const bookElement = createBook(bookItem);
+      if(bookItem.isComplete){
+      completeBookshelfList.append(bookElement);
+      }else{
+      incompleteBookshelfList.append(bookElement);
+      }
+  }
+});
+
+document.addEventListener("DOMContentLoaded",function(){
+  const submitBook = document.getElementById("inputBook");
+
+  submitBook.addEventListener("submit", function(event){
+      event.preventDefault();
+      addBook();
+  });
+  if(isStorageExist()){
+      loadDataFromStorage();
+  }
+});
