@@ -13,7 +13,6 @@ const STORAGE_KEY = "BOOK_APPS";
     loadDataFromStorage();
   }
 });
-=======
 function generateId() {
   return +new Date();
 }
@@ -186,4 +185,4 @@ searchButton.addEventListener("click", function (event) {
     }
   }
 });
->>>>>>> ced7d7b53d50df68dfad77adb876cc76100b6025
+
