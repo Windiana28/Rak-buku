@@ -89,13 +89,13 @@ function addBookToCompleted(bookId) {
   saveData();
 }
 
-function findBookIndex(bookId) {
-  for (index in books) {
-    if (books[index].id === bookId) {
-      return index;
-    }
+function findBook(bookId){
+  for(bookItem of books){
+      if(bookItem.id === bookId){
+          return bookItem
+      }
   }
-  return -1;
+  return null;
 }
 
 document.addEventListener(RENDER_EVENT, function () {
