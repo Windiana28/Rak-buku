@@ -3,16 +3,7 @@ const RENDER_EVENT = "render-book";
 const SAVED_EVENT = "saved-book";
 const STORAGE_KEY = "BOOK_APPS";
 
-<<<<<<< HEAD
-  submitForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    addBookshelf();
-  });
 
-  if (isStorageIn()) {
-    loadDataFromStorage();
-  }
-});
 function generateId() {
   return +new Date();
 }
