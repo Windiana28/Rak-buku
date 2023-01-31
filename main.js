@@ -98,31 +98,64 @@ function findBookIndex(bookId) {
   return -1;
 }
 
-document.addEventListener(RENDER_EVENT, function (){
+document.addEventListener(RENDER_EVENT, function () {
   const incompleteBookshelfList = document.getElementById("incompleteBookshelfList");
   incompleteBookshelfList.innerHTML = "";
 
   const completeBookshelfList = document.getElementById("completeBookshelfList");
   completeBookshelfList.innerHTML = "";
 
-  for(bookItem of books){
-      const bookElement = createBook(bookItem);
-      if(bookItem.isComplete){
+  for (bookItem of books) {
+    const bookElement = createBook(bookItem);
+    if (bookItem.isComplete) {
       completeBookshelfList.append(bookElement);
-      }else{
+    } else {
       incompleteBookshelfList.append(bookElement);
-      }
+    }
   }
 });
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
   const submitBook = document.getElementById("inputBook");
 
-  submitBook.addEventListener("submit", function(event){
-      event.preventDefault();
-      addBook();
+  submitBook.addEventListener("submit", function (event) {
+    event.preventDefault();
+    addBook();
   });
-  if(isStorageExist()){
-      loadDataFromStorage();
+  if (isStorageExist()) {
+    loadDataFromStorage();
   }
 });
+
+function saveData() {
+  if (isStorageExist()) {
+    const parsed = JSON.stringify(books);
+    localStorage.setItem(STORAGE_KEY, parsed);
+    document.dispatchEvent(new Event(SAVED_EVENT));
+  }
+}
+
+function isStorageExist() {
+  if (typeof Storage === undefined) {
+    alert("Browser tidak mendukung");
+    return false;
+  }
+  return true;
+}
+
+document.addEventListener(SAVED_EVENT, function () {
+  console.log(localStorage.getItem(STORAGE_KEY));
+});
+
+function loadDataFromStorage() {
+  const serializedData = localStorage.getItem(STORAGE_KEY);
+
+  let data = JSON.parse(serializedData);
+
+  if (data !== null) {
+    for (book of data) {
+      books.push(book);
+    }
+  }
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
