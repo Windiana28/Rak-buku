@@ -1,3 +1,69 @@
+const books = [];
+const RENDER_EVENT = "render-book";
+const SAVED_EVENT = "saved-book";
+const STORAGE_KEY = "BOOK_APPS";
+
+
+function generateId(){
+    return +new Date();
+}
+
+function generateBookObject(id, book, author, year, isComplete){
+    return{
+        id: +new Date(),
+        book,
+        author,
+        year,
+        isComplete
+    }
+}
+
+function createBook(bookObject){
+
+  const textTitle = document.createElement("h3");
+  textTitle.innerText = bookObject.book;
+
+  const textAuthor = document.createElement("p");
+  textAuthor.innerText = bookObject.author;
+
+  const textYear = document.createElement("p");
+  textYear.innerText = bookObject.year;
+
+  const textContainer = document.createElement("div");
+  textContainer.classList.add("action")
+  textContainer.append(textTitle,textAuthor,textYear);
+
+  const container = document.createElement("div");
+  container.classList.add("book_item")
+  container.append(textContainer);
+  container.setAttribute("id", `book-${bookObject.id}`);
+
+  const trashButton = document.createElement("button");
+  trashButton.classList.add("red");
+  trashButton.innerText = "Hapus Buku";
+  trashButton.addEventListener("click", function(){
+      alert("anda ingin menghapus buku?");
+      removeBookFromCompleted(bookObject.id);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const submitForm = document.getElementById('inputBook');
 
