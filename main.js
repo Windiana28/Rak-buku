@@ -70,6 +70,22 @@ function createBook(bookObject){
 return container;
 }
 
+function addBook(){
+    
+  const titleBook = document.getElementById("inputBookTitle").value;
+  const authorBook = document.getElementById("inputBookAuthor").value;
+  const yearBook = document.getElementById("inputBookYear").value;
+  const checkBox = document.getElementById("inputBookIsComplete").checked;
+
+  const generatedId = generateId();
+  const bookObject = generateBookObject(generateId,titleBook,authorBook, +yearBook,checkBox);
+  books.push(bookObject);
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
+}
+
+
 
 
 
