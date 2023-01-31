@@ -89,42 +89,40 @@ function addBookToCompleted(bookId) {
   saveData();
 }
 
-function findBook(bookId){
-  for(bookItem of books){
-      if(bookItem.id === bookId){
-          return bookItem
-      }
+function findBook(bookId) {
+  for (bookItem of books) {
+    if (bookItem.id === bookId) {
+      return bookItem;
+    }
   }
   return null;
 }
 
-function removeBookFromCompleted(bookId){
+function removeBookFromCompleted(bookId) {
   const bookTarget = findBookIndex(bookId);
-  if(bookTarget === -1) return;
-  books.splice(bookTarget,1);
+  if (bookTarget === -1) return;
+  books.splice(bookTarget, 1);
 
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 }
 
-function undoBookFromCompleted(bookId){
-
+function undoBookFromCompleted(bookId) {
   const bookTarget = findBook(bookId);
-  if(bookTarget == null) return;
+  if (bookTarget == null) return;
 
   bookTarget.isComplete = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 }
 
-
 function findBookIndex(bookId) {
-  for(index in books){
-      if(books[index].id === bookId){
-          return index
-      }
+  for (index in books) {
+    if (books[index].id === bookId) {
+      return index;
+    }
   }
-  return -1
+  return -1;
 }
 
 document.addEventListener(RENDER_EVENT, function () {
