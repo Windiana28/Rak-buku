@@ -3,7 +3,6 @@ const RENDER_EVENT = "render-book";
 const SAVED_EVENT = "saved-book";
 const STORAGE_KEY = "BOOK_APPS";
 
-
 function generateId() {
   return +new Date();
 }
@@ -81,11 +80,11 @@ function addBook() {
   saveData();
 }
 
-function undoBookFromCompleted(bookId) {
+function addBookToCompleted(bookId) {
   const bookTarget = findBook(bookId);
   if (bookTarget == null) return;
 
-  bookTarget.isComplete = false;
+  bookTarget.isComplete = true;
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 }
@@ -176,4 +175,3 @@ searchButton.addEventListener("click", function (event) {
     }
   }
 });
-
